@@ -1,6 +1,7 @@
 // 🧠git-brain
 const cowsay = require('cowsay');
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 
 app.use(
@@ -67,8 +68,6 @@ app.post('/lfs/:repo/objects/batch', (req, res) => {
   console.log(req.header('host'));
   console.log(req.header('Content-Type'));
   console.log(req.header('Accept'));
-  console.log(req.header('host'));
-  console.log(req.header('host'));
   console.log(req.query);
   console.log(req.body);
   console.log(req.params.repo);
@@ -78,15 +77,30 @@ app.post('/lfs/:repo/objects/batch', (req, res) => {
   responsData = { objects: [] };
 
   req.body.objects.forEach((o) => {
-    responsData.objects.push({
-      actions: {
-        download: {
-          expires_at: `${expires_at.toISOString()}`,
-          expires_in: expires_in,
-          href: `http://${req.header('host')}/cdn/objects/${o.oid}`,
+    if (o.operation === 'download') {
+      responsData.objects.push({
+        actions: {
+          download: {
+            expires_at: `${expires_at.toISOString()}`,
+            expires_in: expires_in,
+            href: `http://${req.header('host')}/cdn/objects/${o.oid}`,
+          },
         },
-      },
-    });
+      });
+    } else {
+      responsData.objects.push({
+        actions: {
+          upload: {
+            expires_at: `${expires_at.toISOString()}`,
+            expires_in: expires_in,
+            header: {
+              Authorization: `secret here ${uuidv4()}`,
+            },
+            href: `http://${req.header('host')}/cdn/objects/${o.oid}`,
+          },
+        },
+      });
+    }
   });
 
   res.send(responsData);
