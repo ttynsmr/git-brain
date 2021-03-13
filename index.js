@@ -1,15 +1,14 @@
 // 🧠git-brain
 const cowsay = require('cowsay');
 const express = require('express');
-const bodyParser = require('body-parser'); // TODO replace it
 const app = express();
 
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: true,
   }),
 );
-app.use(bodyParser.json());
+app.use(express.json({ type: 'application/*+json' }));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`🧠git-brain < I listening ${port}`));
@@ -20,11 +19,8 @@ app.get('/', (req, res) => {
 
 function htmlMessage(text) {
   let style =
-    '<style type="text/css"><!-- p {font: small "Consolas"; white-space: pre} --> </style>';
-  let cowMessage = cowsay
-    .say({ text: text, mode: 'y' })
-    .replace(/\r?\n/g, '<br>')
-    .replace(' ', '&nbsp;');
+    '<style type="text/css"><!-- p {font: small font-family: monospace; white-space: pre} --> </style>';
+  let cowMessage = cowsay.say({ text: text, mode: 'y' }).replace(/\r?\n/g, '<br>');
   return `🧠git-brain${style}<br><p class="sample">${cowMessage}</p>`;
 }
 
@@ -65,28 +61,35 @@ app.put('/cdn/objects/:oid', (req, res) => {
 //     }
 //   ]
 // }
-app.post('/lfs/batch', (req, res) => {
+app.post('/lfs/:repo/objects/batch', (req, res) => {
   console.log(req.route);
   console.log(req.params);
   console.log(req.header('host'));
+  console.log(req.header('Content-Type'));
+  console.log(req.header('Accept'));
+  console.log(req.header('host'));
+  console.log(req.header('host'));
   console.log(req.query);
   console.log(req.body);
+  console.log(req.params.repo);
   const expires_in = 3600;
   let now = new Date();
   let expires_at = new Date(now.setSeconds(now.getSeconds() + expires_in));
-  res.send({
-    objects: [
-      {
-        actions: {
-          download: {
-            expires_at: `${expires_at.toISOString()}`,
-            expires_in: expires_in,
-            href: `http://${req.header('host')}/cdn/objects/${req.body.objects[0].oid}`,
-          },
+  responsData = { objects: [] };
+
+  req.body.objects.forEach((o) => {
+    responsData.objects.push({
+      actions: {
+        download: {
+          expires_at: `${expires_at.toISOString()}`,
+          expires_in: expires_in,
+          href: `http://${req.header('host')}/cdn/objects/${o.oid}`,
         },
       },
-    ],
+    });
   });
+
+  res.send(responsData);
 });
 
 // Downloads
