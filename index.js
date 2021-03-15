@@ -2,7 +2,24 @@
 const cowsay = require('cowsay');
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
+const level = require('level');
+const fs = require('fs');
+
 const app = express();
+
+try {
+  let brain = fs.statSync('.brain');
+  console.log('Your 🧠 is already there.');
+} catch (err) {
+  if (err.code === 'ENOENT') {
+    fs.mkdirSync('.brain');
+    console.log("I've prepared a place for your 🧠.");
+  } else {
+    console.log(err);
+  }
+}
+
+let db = level('.brain/sandbox');
 
 app.use(
   express.urlencoded({
@@ -16,6 +33,40 @@ app.listen(port, () => console.log(`🧠git-brain < I listening ${port}`));
 
 app.get('/', (req, res) => {
   res.send('🧠git-brain');
+});
+
+app.get('/sandbox.set/:key/:value', (req, res) => {
+  (async () => {
+    let err = await db.put(req.params.key, req.params.value);
+    if (err) {
+      res.status(500).send('🧠Ooops!');
+      return console.log('🧠Ooops!', err); // some kind of I/O error
+    }
+
+    try {
+      let value = await db.get(req.params.key);
+
+      console.log('🧠set key=' + value);
+      res.send('🧠set key=' + value);
+    } catch (err) {
+      res.status(500).send('🧠Ooops!');
+      if (err) return console.log('🧠Ooops!', err); // some kind of I/O error
+    }
+  })();
+});
+
+app.get('/sandbox.get/:key', (req, res) => {
+  (async () => {
+    try {
+      let value = await db.get(req.params.key);
+
+      console.log('get key=' + value);
+      res.send('get key=' + value);
+    } catch (err) {
+      res.status(500).send('Ooops!');
+      if (err) return console.log('Ooops!', err); // some kind of I/O error
+    }
+  })();
 });
 
 function htmlMessage(text) {
