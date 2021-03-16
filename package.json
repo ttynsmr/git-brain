@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "git-brain": "bin/cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "ttynsmr",
   "license": "ISC",
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.10",
@@ -15,5 +18,11 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "cac": "^6.7.2",
+    "find-parent-dir": "^0.3.0",
+    "globby": "^11.0.2",
+    "vizion": "^2.2.1"
   }
 }
