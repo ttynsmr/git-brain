@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clui": "^0.3.6",
     "cowsay": "^1.4.0",
     "express": "^4.17.1",
     "level": "^6.0.1",

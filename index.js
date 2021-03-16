@@ -7,15 +7,23 @@ const fs = require('fs');
 
 const app = express();
 
+const { BrainStatus } = require('./brains-status');
+
+let brainStatus = new BrainStatus();
+
 try {
-  let brain = fs.statSync('.brain');
-  console.log('Your 🧠 is already there.');
+  let stat = fs.statSync('.brain');
+  if (stat.isDirectory()) {
+    brainStatus.log('Your 🧠 is already there.');
+  } else {
+    brainStatus.log("Your 🧠 is something wrong. Why isn't '.brain' a directory?");
+  }
 } catch (err) {
   if (err.code === 'ENOENT') {
     fs.mkdirSync('.brain');
-    console.log("I've prepared a place for your 🧠.");
+    brainStatus.log("I've prepared a place for your 🧠.");
   } else {
-    console.log(err);
+    brainStatus.log(err);
   }
 }
 
@@ -40,18 +48,20 @@ app.get('/sandbox.set/:key/:value', (req, res) => {
     let err = await db.put(req.params.key, req.params.value);
     if (err) {
       res.status(500).send('🧠Ooops!');
-      return console.log('🧠Ooops!', err); // some kind of I/O error
+      return brainStatus.log('🧠Ooops!', err); // some kind of I/O error
     }
 
     try {
       let value = await db.get(req.params.key);
 
-      console.log('🧠set key=' + value);
+      brainStatus.log('🧠set key=' + value);
       res.send('🧠set key=' + value);
     } catch (err) {
       res.status(500).send('🧠Ooops!');
-      if (err) return console.log('🧠Ooops!', err); // some kind of I/O error
+      if (err) return brainStatus.log('🧠Ooops!', err); // some kind of I/O error
     }
+
+    return brainStatus.log('Fine', err); // some kind of I/O error
   })();
 });
 
@@ -60,11 +70,11 @@ app.get('/sandbox.get/:key', (req, res) => {
     try {
       let value = await db.get(req.params.key);
 
-      console.log('get key=' + value);
-      res.send('get key=' + value);
+      brainStatus.log('get key=' + value);
+      res.send('🧠get key=' + value);
     } catch (err) {
       res.status(500).send('Ooops!');
-      if (err) return console.log('Ooops!', err); // some kind of I/O error
+      if (err) return brainStatus.log('Ooops!', err); // some kind of I/O error
     }
   })();
 });
@@ -273,3 +283,7 @@ app.put('/lfs/basic-transfers', (req, res) => {
 app.post('/lfs/basic-transfers', (req, res) => {
   res.send({ iam: 'verify' });
 });
+
+brainStatus.startBrainStatus();
+
+brainStatus.setStatus('Running');
