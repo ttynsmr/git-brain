@@ -28,15 +28,15 @@ async function runCommand(options, command) {
     console.log('prune here');
   });
 
-  cli.command('clean [...files]', 'Clean').action((files) => {
+  cli.command('clean [file]', 'Clean').action((file) => {
     console.log('clean here');
   });
 
-  cli.command('smudge [...files]', 'Smudge').action((files) => {
+  cli.command('smudge [file]', 'Smudge').action((file) => {
     console.log('smudge here');
   });
 
-  cli.command('filter-process [...files]', 'Filter process').action((files) => {
+  cli.command('filter-process [file]', 'Filter process').action((file) => {
     console.log('filter-process here');
   });
 
