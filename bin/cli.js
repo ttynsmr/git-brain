@@ -16,8 +16,13 @@ async function runCommand(options, command) {
 }
 
 (async () => {
-  cli.command('init', 'Initialize').action(() => {
-    console.log('init here');
+  cli.option('--', '--');
+  cli.option('--a', '--');
+
+  cli.command('init', 'Initialize').action((options) => {
+    runCommand(options, () => {
+      index.runCommandInit();
+    });
   });
 
   cli.command('update', 'Update').action(() => {
@@ -28,15 +33,17 @@ async function runCommand(options, command) {
     console.log('prune here');
   });
 
-  cli.command('clean [file]', 'Clean').action((file) => {
-    console.log('clean here');
+  cli.command('clean [file]', 'Clean').action((file, options) => {
+    runCommand(options, () => {
+      index.runCommandClean(file);
+    });
   });
 
   cli.command('smudge [file]', 'Smudge').action((file) => {
     console.log('smudge here');
   });
 
-  cli.command('filter-process [file]', 'Filter process').action((file) => {
+  cli.command('filter-process', 'Filter process').action(() => {
     console.log('filter-process here');
   });
 
