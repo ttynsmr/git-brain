@@ -2,12 +2,12 @@
   "name": "git-brain",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "bin/cli.js",
   "bin": {
     "git-brain": "bin/cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "ttynsmr",
@@ -23,6 +23,8 @@
     "cac": "^6.7.2",
     "find-parent-dir": "^0.3.0",
     "globby": "^11.0.2",
+    "hasha": "^5.2.2",
+    "jest": "^26.6.3",
     "vizion": "^2.2.1"
   }
 }
