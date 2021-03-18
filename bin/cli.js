@@ -11,19 +11,19 @@ async function cleanupAfterCommand(options) {}
 
 async function runCommand(options, command) {
   await setupBeforeCommand(options);
-  await command();
+  await command(options);
   await cleanupAfterCommand(options);
 }
 
 (async () => {
-  cli.option('--', '--');
-  cli.option('--a', '--');
-
-  cli.command('init', 'Initialize').action((options) => {
-    runCommand(options, () => {
-      index.runCommandInit();
+  cli
+    .command('init', 'Initialize')
+    .option('--run-test', 'Run test FOR DEVELOPER')
+    .action((options) => {
+      runCommand(options, () => {
+        index.runCommandInit(options);
+      });
     });
-  });
 
   cli.command('update', 'Update').action(() => {
     console.log('update here');
@@ -40,11 +40,9 @@ async function runCommand(options, command) {
   });
 
   cli.command('smudge [file]', 'Smudge').action((file) => {
-    console.log('smudge here');
-  });
-
-  cli.command('filter-process', 'Filter process').action(() => {
-    console.log('filter-process here');
+    runCommand(options, () => {
+      index.runCommandSmudge(file);
+    });
   });
 
   cli.command('info', 'Informations').action((options) => {

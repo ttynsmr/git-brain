@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`clean filter actual file file stream 1`] = `
+"version https://git-lfs.github.com/spec/v1
+oid sha256:40a9ef7b88be7becfc0f503a712ccc82db446943d9cce6dc684a67cbc4cd18d6
+size 15
+"
+`;
