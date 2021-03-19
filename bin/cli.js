@@ -16,14 +16,11 @@ async function runCommand(options, command) {
 }
 
 (async () => {
-  cli
-    .command('init', 'Initialize')
-    .option('--run-test', 'Run test FOR DEVELOPER')
-    .action((options) => {
-      runCommand(options, () => {
-        index.runCommandInit(options);
-      });
+  cli.command('init', 'Initialize').action((options) => {
+    runCommand(options, () => {
+      index.runCommandInit(options);
     });
+  });
 
   cli.command('update', 'Update').action(() => {
     console.log('update here');

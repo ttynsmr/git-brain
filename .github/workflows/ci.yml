@@ -16,5 +16,7 @@ jobs:
           node-version: '15.x'
       - name: npm install
         run: npm install
+      - name: npm install git-brain
+        run: npm install -g
       - name: Run Jest
         run: npm test
