@@ -8,15 +8,6 @@ jobs:
   build:
     name: test
     runs-on: ubuntu-latest
-    # services:
-    #   svn:
-    #     image: kuchida1981/subversion-httpd
-    #     env:
-    #       SVN_DEFAULT_USER: ${{ secrets.SVN_USER }}
-    #       SVN_DEFAULT_USER_PASSWD: ${{ secrets.SVN_PASS }}
-    #       SVN_DEFAULT_REPOSITORY: gb-sandbox
-    #     ports:
-    #       - 10080:80
 
     steps:
       - uses: actions/checkout@v2.3.4
@@ -28,10 +19,6 @@ jobs:
         run: npm ci
       - name: npm install git-brain
         run: npm install -g
-      # - name: Check svn repository
-      #   run: curl --retry 30 --retry-delay 1 --retry-connrefused -u ${{ secrets.SVN_USER }}:${{ secrets.SVN_PASS }} http://localhost:10080/gb-sandbox/
-      # - name: Check svn repository info
-      #   run: svn info --username ${{ secrets.SVN_USER }} --password ${{ secrets.SVN_PASS }} http://127.0.0.1:10080/gb-sandbox/
       - name: Run Jest
         run: npm test
         env:
