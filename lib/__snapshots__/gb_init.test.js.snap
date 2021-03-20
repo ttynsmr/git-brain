@@ -19,11 +19,15 @@ Untracked files:
   (use \\"git add <file>...\\" to include in what will be committed)
 	.gitattributes
 	.svn/
+	svn.qwe.bin
 	zxc.bin
 
 nothing added to commit but untracked files present (use \\"git add\\" to track)
 .brain
 .brain/objects
+.brain/objects/d4
+.brain/objects/d4/ec
+.brain/objects/d4/ec/d4ec39e9a74c365b7ecc127ee72352425c7e7e310e8b6baa5fab4e2904c0626c
 .brain/objects/82
 .brain/objects/82/e0
 .brain/objects/82/e0/82e0ebc90140066bed1db993d5ceeaf7a34fc42aed9e2cda82ce6211819ea59d
