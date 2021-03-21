@@ -36,7 +36,7 @@ async function runCommand(options, command) {
     });
   });
 
-  cli.command('smudge [file]', 'Smudge').action((file) => {
+  cli.command('smudge [file]', 'Smudge').action((file, options) => {
     runCommand(options, () => {
       index.runCommandSmudge(file);
     });
