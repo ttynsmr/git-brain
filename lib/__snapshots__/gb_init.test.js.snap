@@ -18,7 +18,7 @@ No commits yet
 Untracked files:
   (use \\"git add <file>...\\" to include in what will be committed)
 	.gitattributes
-	.svn/
+	.gitignore
 	svn.qwe.bin
 	zxc.bin
 

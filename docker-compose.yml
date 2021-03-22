@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 services:
   svn:
     image: kuchida1981/subversion-httpd
@@ -8,3 +8,5 @@ services:
       SVN_DEFAULT_REPOSITORY: gb-sandbox
     ports:
       - 10080:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -22,8 +22,10 @@ async function runCommand(options, command) {
     });
   });
 
-  cli.command('update', 'Update').action(() => {
-    console.log('update here');
+  cli.command('update', 'Update').action((options) => {
+    runCommand(options, () => {
+      index.runCommandUpdate(options);
+    });
   });
 
   cli.command('prune', 'Prune').action(() => {

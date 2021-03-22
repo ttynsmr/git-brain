@@ -12,7 +12,8 @@
     ]
   },
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "act": "act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 --secret-file .env pull_request"
   },
   "keywords": [],
   "author": "ttynsmr",
