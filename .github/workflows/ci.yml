@@ -19,6 +19,8 @@ jobs:
         run: npm ci
       - name: npm install git-brain
         run: npm install -g
+      - name: Setup git user
+        run: git config --global user.email "you@example.com" ; git config --global user.name "Your Name"
       - name: Run Jest
         run: npm test
         env:
