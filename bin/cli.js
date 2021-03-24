@@ -50,6 +50,15 @@ async function runCommand(options, command) {
     });
   });
 
+  cli
+    .command('prune', 'prune')
+    .option('-n, --dry-run', 'Dry run')
+    .action((options) => {
+      runCommand(options, () => {
+        index.runCommandPrune(options);
+      });
+    });
+
   cli.help();
   cli.parse();
 })();
