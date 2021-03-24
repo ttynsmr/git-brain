@@ -44,9 +44,9 @@ async function runCommand(options, command) {
     });
   });
 
-  cli.command('info', 'Informations').action((options) => {
+  cli.command('info <type>', 'Informations "repo", "brain"').action((type, options) => {
     runCommand(options, () => {
-      index.runCommandInfo();
+      index.runCommandInfo(type, options);
     });
   });
 
