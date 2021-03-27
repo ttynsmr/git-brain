@@ -23,8 +23,3 @@ jobs:
         run: git config --global user.email "you@example.com" ; git config --global user.name "Your Name"
       - name: Run Jest
         run: npm test
-        env:
-          SVN_USER: ${{ secrets.SVN_USER }}
-          SVN_PASS: ${{ secrets.SVN_PASS }}
-          SVN_HOST: 127.0.0.1
-          SVN_PORT: 10080
