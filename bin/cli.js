@@ -59,6 +59,15 @@ async function runCommand(options, command) {
       });
     });
 
+  cli
+    .command('fetch', 'fetch')
+    .option('-n, --dry-run', 'Dry run')
+    .action((options) => {
+      runCommand(options, () => {
+        index.runCommandFetch(options);
+      });
+    });
+
   cli.help();
   cli.parse();
 })();
