@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`git-brain init 1`] = `
+"Committing transaction...
+Committed revision 1.
+Checked out revision 1.
+Checked out revision 1.
+A         svn.qwe.bin
+Adding         svn.qwe.bin
+Transmitting file data .done
+Committing transaction...
+Committed revision 2.
+Updating '.':
+At revision 2.
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[filter \\"brain\\"]
+	clean = git-brain clean %f
+	smudge = git-brain smudge %f
+this text as bin
+Updating '.':
+A    svn.qwe.bin
+Updated to revision 2.
+A         README.txt
+A         rev2.bin
+Adding         README.txt
+Adding         rev2.bin
+Transmitting file data ..done
+Committing transaction...
+Committed revision 3.
+Updating '.':
+A    README.txt
+A    rev2.bin
+Updated to revision 3.
+.brain
+.brain/db
+.brain/db/v0
+.brain/db/v0/000003.log
+.brain/db/v0/CURRENT
+.brain/db/v0/LOCK
+.brain/db/v0/LOG
+.brain/db/v0/LOG.old
+.brain/db/v0/MANIFEST-000002
+"
+`;
