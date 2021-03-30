@@ -68,6 +68,15 @@ async function runCommand(options, command) {
       });
     });
 
+  cli
+    .command('status [...files]', 'status')
+    .option('-n, --dry-run', 'Dry run')
+    .action((files, options) => {
+      runCommand(options, () => {
+        index.runCommandStatus(files, options);
+      });
+    });
+
   cli.help();
   cli.parse();
 })();
