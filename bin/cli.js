@@ -3,11 +3,12 @@
 const cli = require('cac')();
 const index = require('../lib/index');
 
-async function setupBeforeCommand(options) {
+async function setupBeforeCommand() {
   await index.initialize();
 }
 
-async function cleanupAfterCommand(options) {}
+// eslint-disable-next-line no-empty-function
+async function cleanupAfterCommand() {}
 
 async function runCommand(options, command) {
   await setupBeforeCommand(options);
@@ -26,10 +27,6 @@ async function runCommand(options, command) {
     runCommand(options, () => {
       index.runCommandUpdate(options);
     });
-  });
-
-  cli.command('prune', 'Prune').action(() => {
-    console.log('prune here');
   });
 
   cli.command('clean [file]', 'Clean').action((file, options) => {
