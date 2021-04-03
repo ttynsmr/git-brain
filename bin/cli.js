@@ -51,7 +51,7 @@ async function runCommand(options, command) {
   });
 
   cli
-    .command('prune', 'prune')
+    .command('prune', 'Prune caches')
     .option('-n, --dry-run', 'Dry run')
     .action((options) => {
       runCommand(options, () => {
