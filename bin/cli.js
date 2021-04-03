@@ -44,14 +44,14 @@ async function runCommand(options, command) {
     });
   });
 
-  cli.command('info <type>', 'Informations "repo", "brain"').action((type, options) => {
+  cli.command('info [type]', 'Informations "repo", "cache", "brain"').action((type, options) => {
     runCommand(options, () => {
       index.runCommandInfo(type, options);
     });
   });
 
   cli
-    .command('prune', 'prune')
+    .command('prune', 'Prune caches')
     .option('-n, --dry-run', 'Dry run')
     .action((options) => {
       runCommand(options, () => {
