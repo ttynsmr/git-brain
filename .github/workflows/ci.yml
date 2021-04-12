@@ -24,4 +24,4 @@ jobs:
       - name: Setup git user
         run: git config --global user.email "you@example.com" ; git config --global user.name "Your Name"
       - name: Run Jest
-        run: npm test
+        run: npm run with-sandbox-test
