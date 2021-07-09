@@ -35,7 +35,7 @@
     "awaitify-stream": "^1.0.2",
     "cac": "^6.7.2",
     "find-parent-dir": "^0.3.0",
-    "globby": "^11.0.2",
+    "globby": "^11.0.4",
     "jest": "^26.6.3",
     "level": "^6.0.1",
     "memory-streams": "^0.1.3",
