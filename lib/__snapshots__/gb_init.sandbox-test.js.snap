@@ -44,7 +44,6 @@ Updated to revision 3.
 .brain/db/v0/CURRENT
 .brain/db/v0/LOCK
 .brain/db/v0/LOG
-.brain/db/v0/LOG.old
 .brain/db/v0/MANIFEST-000002
 "
 `;
