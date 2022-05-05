@@ -37,13 +37,5 @@ Updating '.':
 A    README.txt
 A    rev2.bin
 Updated to revision 3.
-.brain
-.brain/db
-.brain/db/v0
-.brain/db/v0/000003.log
-.brain/db/v0/CURRENT
-.brain/db/v0/LOCK
-.brain/db/v0/LOG
-.brain/db/v0/MANIFEST-000002
 "
 `;
