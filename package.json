@@ -42,7 +42,7 @@
   "dependencies": {
     "awaitify-stream": "^1.0.2",
     "cac": "^6.7.12",
-    "decamelize": "^5.0.1",
+    "decamelize": "^6.0.0",
     "find-parent-dir": "^0.3.0",
     "globby": "^13.1.1",
     "level": "^8.0.0",
