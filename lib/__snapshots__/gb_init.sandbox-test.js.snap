@@ -19,7 +19,7 @@ At revision 2.
 	logallrefupdates = true
 	ignorecase = true
 	precomposeunicode = true
-[filter \\"brain\\"]
+[filter "brain"]
 	clean = git-brain clean %f
 	smudge = git-brain smudge %f
 this text as bin
