@@ -35,7 +35,7 @@
     "pump": "^3.0.0",
     "require-main-filename": "^2.0.0",
     "set-blocking": "^2.0.0",
-    "which-module": "^2.0.0",
+    "which-module": "^2.0.1",
     "xtend": "^4.0.2"
   },
   "dependencies": {
